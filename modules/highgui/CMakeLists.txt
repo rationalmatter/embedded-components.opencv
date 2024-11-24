@@ -173,6 +173,13 @@ elseif(WINRT)
     message(STATUS "  ${name}:   Removing 'comctl32.lib, gdi32.lib, ole32.lib, setupapi.lib'")
     message(STATUS "  ${name}:   Leaving '${HIGHGUI_LIBRARIES}'")
   endif()
+
+elseif(CMAKE_SYSTEM_NAME STREQUAL "iOS")
+    set(OPENCV_HIGHGUI_BUILTIN_BACKEND "JUNO")
+    add_definitions(-DHAVE_JUNO_BACKEND)
+    list(APPEND highgui_srcs ${CMAKE_CURRENT_LIST_DIR}/src/window_juno.mm)
+    list(APPEND HIGHGUI_LIBRARIES "-framework UIKit")
+
 elseif(HAVE_COCOA)
   set(OPENCV_HIGHGUI_BUILTIN_BACKEND "COCOA")
   add_definitions(-DHAVE_COCOA)
