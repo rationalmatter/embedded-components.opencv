@@ -89,6 +89,12 @@ add_custom_command(
     COMMENT "Generate files for Python bindings and documentation"
 )
 
+execute_process(COMMAND ${PYTHON_DEFAULT_EXECUTABLE} ${PYTHON_SOURCE_DIR}/src2/gen2.py ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR}/headers.txt OUTPUT_VARIABLE EXEC_RESULT)
+
+message(STATUS "Generating stubs: ${PYTHON_DEFAULT_EXECUTABLE} ${PYTHON_SOURCE_DIR}/src2/gen2.py ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR}/headers.txt")
+message(STATUS "Generating output: ${cv2_generated_files}")
+message(STATUS "Generating result: ${EXEC_RESULT}")
+
 add_custom_target(gen_opencv_python_source DEPENDS ${cv2_generated_files})
 
 if(TARGET copy_opencv_typing_stubs)

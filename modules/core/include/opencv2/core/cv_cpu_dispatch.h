@@ -143,7 +143,7 @@
 # define CV_NEON 1
 #elif defined(__ARM_NEON)
 #  include <arm_neon.h>
-#  define CV_NEON 1
+#  define CV_NEON 0 // we don't have NEON instructions for iPad
 #endif
 
 #if defined(__riscv) && defined(__riscv_vector) && defined(__riscv_vector_071)

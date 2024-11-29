@@ -46,7 +46,7 @@ UITrackbar::~UITrackbar()
 static
 std::string& getUIBackendName()
 {
-    static std::string g_backendName = toUpperCase(cv::utils::getConfigurationParameterString("OPENCV_UI_BACKEND", ""));
+    static std::string g_backendName = toUpperCase(cv::utils::getConfigurationParameterString("OPENCV_UI_BACKEND", "JUNO"));
     return g_backendName;
 }
 

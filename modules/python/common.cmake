@@ -19,7 +19,7 @@ if(NOT WIN32 AND NOT APPLE AND NOT OPENCV_PYTHON_SKIP_LINKER_EXCLUDE_LIBS)
   set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -Wl,--exclude-libs=ALL")
 endif()
 
-ocv_add_library(${the_module} MODULE
+ocv_add_library(${the_module} STATIC
   ${PYTHON_SOURCE_DIR}/src2/cv2.cpp
   ${PYTHON_SOURCE_DIR}/src2/cv2_util.cpp
   ${PYTHON_SOURCE_DIR}/src2/cv2_numpy.cpp
@@ -97,12 +97,14 @@ endif()
 
 ocv_update(OPENCV_PYTHON_EXTENSION_BUILD_PATH "${LIBRARY_OUTPUT_PATH}/${MODULE_INSTALL_SUBDIR}")
 
-set_target_properties(${the_module} PROPERTIES
-                      LIBRARY_OUTPUT_DIRECTORY  "${OPENCV_PYTHON_EXTENSION_BUILD_PATH}"
-                      ARCHIVE_OUTPUT_NAME ${the_module}  # prevent name conflict for python2/3 outputs
-                      PREFIX ""
-                      OUTPUT_NAME cv2
-                      SUFFIX "${CVPY_SUFFIX}")
+set_target_properties(${the_module} PROPERTIES OUTPUT_NAME cv2)
+
+#set_target_properties(${the_module} PROPERTIES
+#                      LIBRARY_OUTPUT_DIRECTORY  "${OPENCV_PYTHON_EXTENSION_BUILD_PATH}"
+#                      ARCHIVE_OUTPUT_NAME ${the_module}  # prevent name conflict for python2/3 outputs
+#                      PREFIX ""
+#                      OUTPUT_NAME cv2
+#                      SUFFIX "${CVPY_SUFFIX}")
 
 if(ENABLE_SOLUTION_FOLDERS)
   set_target_properties(${the_module} PROPERTIES FOLDER "bindings")
@@ -188,12 +190,12 @@ else()
   set(__python_binary_install_path "${OPENCV_PYTHON_INSTALL_PATH}/${__python_loader_subdir}${__python_binary_subdir}")
 endif()
 
-install(TARGETS ${the_module}
-        ${PYTHON_INSTALL_CONFIGURATIONS}
-        RUNTIME DESTINATION "${__python_binary_install_path}" COMPONENT python
-        LIBRARY DESTINATION "${__python_binary_install_path}" COMPONENT python
-        ${PYTHON_INSTALL_ARCHIVE}
-        )
+#install(TARGETS ${the_module}
+#        ${PYTHON_INSTALL_CONFIGURATIONS}
+#        RUNTIME DESTINATION "${__python_binary_install_path}" COMPONENT python
+#        LIBRARY DESTINATION "${__python_binary_install_path}" COMPONENT python
+#        ${PYTHON_INSTALL_ARCHIVE}
+#        )
 
 set(__INSTALL_PATH_${PYTHON} "${__python_binary_install_path}" CACHE INTERNAL "")  # CMake status
 
@@ -233,7 +235,7 @@ if(NOT OPENCV_SKIP_PYTHON_LOADER)
     set(CMAKE_PYTHON_EXTENSION_PATH "os.path.join(${CMAKE_PYTHON_EXTENSION_INSTALL_PATH_BASE}, '${OpenCV_PYTHON_BINARY_RELATIVE_INSTALL_PATH}')")
   endif()
   configure_file("${PYTHON_SOURCE_DIR}/package/template/config-x.y.py.in" "${__python_loader_install_tmp_path}/cv2/${__target_config}" @ONLY)
-  install(FILES "${__python_loader_install_tmp_path}/cv2/${__target_config}" DESTINATION "${OPENCV_PYTHON_INSTALL_PATH}/cv2/" COMPONENT python)
+#  install(FILES "${__python_loader_install_tmp_path}/cv2/${__target_config}" DESTINATION "${OPENCV_PYTHON_INSTALL_PATH}/cv2/" COMPONENT python)
 endif()  # NOT OPENCV_SKIP_PYTHON_LOADER
 
 unset(PYTHON_SRC_DIR)

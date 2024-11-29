@@ -6,7 +6,7 @@ if(NOT WITH_PROTOBUF)
   return()
 endif()
 
-ocv_option(BUILD_PROTOBUF "Force to build libprotobuf runtime from sources" ON)
+ocv_option(BUILD_PROTOBUF "Force to build libprotobuf runtime from sources" OFF)
 ocv_option(PROTOBUF_UPDATE_FILES "Force rebuilding .proto files (protoc should be available)" OFF)
 
 # BUILD_PROTOBUF=OFF: Custom manual protobuf configuration (see find_package(Protobuf) for details):
@@ -34,10 +34,10 @@ else()
   set(protobuf_MODULE_COMPATIBLE ON)
 
   unset(Protobuf_VERSION CACHE)
-  find_package(Protobuf QUIET CONFIG)
-  if(NOT Protobuf_FOUND)
-    find_package(Protobuf QUIET)
-  endif()
+  # find_package(Protobuf QUIET CONFIG)
+  # if(NOT Protobuf_FOUND)
+  #   find_package(Protobuf QUIET)
+  # endif()
 
   # Backwards compatibility
   # Define camel case versions of input variables
@@ -87,6 +87,9 @@ if(HAVE_PROTOBUF)
   endif()
 endif()
 
+# after all disable protobuf, we don't need it (it conflicts with protobuf from arrow and opencv compiles and runs without protobuf)
+set(HAVE_PROTOBUF FALSE)
+      
 if(HAVE_PROTOBUF AND PROTOBUF_UPDATE_FILES AND NOT COMMAND PROTOBUF_GENERATE_CPP)
   message(FATAL_ERROR "Can't configure protobuf dependency (BUILD_PROTOBUF=${BUILD_PROTOBUF} PROTOBUF_UPDATE_FILES=${PROTOBUF_UPDATE_FILES})")
 endif()

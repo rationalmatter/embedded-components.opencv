@@ -123,6 +123,8 @@ std::shared_ptr<UIBackend> createUIBackendWin32UI();
 std::shared_ptr<UIBackend> createUIBackendGTK();
 #endif
 
+std::shared_ptr<UIBackend> createUIBackendJuno();
+
 #if 0  // TODO: defined HAVE_QT
 std::shared_ptr<UIBackend> createUIBackendQT();
 #endif

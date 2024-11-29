@@ -35,6 +35,12 @@ if(APPLE)
   list(APPEND HIGHGUI_LIBRARIES ${ZLIB_LIBRARIES})
 endif()
 
+ocv_include_directories(${CMAKE_CURRENT_LIST_DIR}/../imgcodecs/misc/objc/ios/)
+ocv_include_directories(${CMAKE_CURRENT_LIST_DIR}/../core/misc/objc/common/)
+
+message(STATUS "JUNO_INCLUDE_DIR: ${JUNO_INCLUDE_DIR}")
+ocv_include_directories(${JUNO_INCLUDE_DIR})
+
 if(HAVE_WEBP)
   add_definitions(-DHAVE_WEBP)
 endif()
