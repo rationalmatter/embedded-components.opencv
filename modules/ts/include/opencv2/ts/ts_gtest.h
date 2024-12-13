@@ -2711,7 +2711,7 @@ class GTEST_API_ GTestLog {
 
 # define GTEST_LOG_(severity) \
     ::testing::internal::GTestLog(::testing::internal::GTEST_##severity, \
-                                  __FILE__, __LINE__).GetStream()
+                                    __FILE_NAME__, __LINE__).GetStream()
 
 inline void LogToStderr() {}
 inline void FlushInfoLog() { fflush(NULL); }
@@ -9186,7 +9186,7 @@ class NativeArray {
     = ::testing::Message()
 
 #define GTEST_MESSAGE_(message, result_type) \
-  GTEST_MESSAGE_AT_(__FILE__, __LINE__, message, result_type)
+  GTEST_MESSAGE_AT_(__FILE_NAME__, __LINE__, message, result_type)
 
 #define GTEST_FATAL_FAILURE_(message) \
   return GTEST_MESSAGE_(message, ::testing::TestPartResult::kFatalFailure)
@@ -9312,7 +9312,7 @@ class GTEST_TEST_CLASS_NAME_(test_case_name, test_name) : public parent_class {\
   ::test_info_ =\
     ::testing::internal::MakeAndRegisterTestInfo(\
         #test_case_name, #test_name, NULL, NULL, \
-        ::testing::internal::CodeLocation(__FILE__, __LINE__), \
+        ::testing::internal::CodeLocation(__FILE_NAME__, __LINE__), \
         (parent_id), \
         parent_class::SetUpTestCase, \
         parent_class::TearDownTestCase, \
@@ -9532,7 +9532,7 @@ GTEST_API_ bool ExitedUnsuccessfully(int exit_status);
         stderr, \
         "\n%s: Caught std::exception-derived exception escaping the " \
         "death test statement. Exception message: %s\n", \
-        ::testing::internal::FormatFileLocation(__FILE__, __LINE__).c_str(), \
+        ::testing::internal::FormatFileLocation(__FILE_NAME__, __LINE__).c_str(), \
         gtest_exception.what()); \
     fflush(stderr); \
     death_test->Abort(::testing::internal::DeathTest::TEST_THREW_EXCEPTION); \
@@ -9554,7 +9554,7 @@ GTEST_API_ bool ExitedUnsuccessfully(int exit_status);
     const ::testing::internal::RE& gtest_regex = (regex); \
     ::testing::internal::DeathTest* gtest_dt; \
     if (!::testing::internal::DeathTest::Create(#statement, &gtest_regex, \
-        __FILE__, __LINE__, &gtest_dt)) { \
+      __FILE_NAME__, __LINE__, &gtest_dt)) { \
       goto GTEST_CONCAT_TOKEN_(gtest_label_, __LINE__); \
     } \
     if (gtest_dt != NULL) { \
@@ -18990,7 +18990,7 @@ internal::CartesianProductHolder10<Generator1, Generator2, Generator3,
           GetTestCasePatternHolder<test_case_name>(\
               #test_case_name, \
               ::testing::internal::CodeLocation(\
-                  __FILE__, __LINE__))->AddTestPattern(\
+                __FILE_NAME__, __LINE__))->AddTestPattern(\
                       GTEST_STRINGIFY_(test_case_name), \
                       GTEST_STRINGIFY_(test_name), \
                       new ::testing::internal::TestMetaFactory< \
@@ -19032,11 +19032,11 @@ internal::CartesianProductHolder10<Generator1, Generator2, Generator3,
           GetTestCasePatternHolder<test_case_name>(\
               #test_case_name, \
               ::testing::internal::CodeLocation(\
-                  __FILE__, __LINE__))->AddTestCaseInstantiation(\
+                      __FILE_NAME__, __LINE__))->AddTestCaseInstantiation(\
                       #prefix, \
                       &gtest_##prefix##test_case_name##_EvalGenerator_, \
                       &gtest_##prefix##test_case_name##_EvalGenerateName_, \
-                      __FILE__, __LINE__)
+                      __FILE_NAME__, __LINE__)
 
 }  // namespace testing
 
@@ -19498,7 +19498,7 @@ INSTANTIATE_TYPED_TEST_CASE_P(My, FooTest, MyTypes);
           GTEST_TYPE_PARAMS_(                                                 \
               CaseName)>::Register("",                                        \
                                    ::testing::internal::CodeLocation(         \
-                                       __FILE__, __LINE__),                   \
+                                  __FILE_NAME__, __LINE__),                   \
                                    #CaseName, #TestName, 0,                   \
                                    ::testing::internal::GenerateNames<        \
                                        GTEST_NAME_GENERATOR_(CaseName),       \
@@ -19553,7 +19553,7 @@ INSTANTIATE_TYPED_TEST_CASE_P(My, FooTest, MyTypes);
   }; \
   static bool gtest_##TestName##_defined_ GTEST_ATTRIBUTE_UNUSED_ = \
       GTEST_TYPED_TEST_CASE_P_STATE_(CaseName).AddTestName(\
-          __FILE__, __LINE__, #CaseName, #TestName); \
+      __FILE_NAME__, __LINE__, #CaseName, #TestName); \
   } \
   template <typename gtest_TypeParam_> \
   void GTEST_CASE_NAMESPACE_(CaseName)::TestName<gtest_TypeParam_>::TestBody()
@@ -19565,7 +19565,7 @@ INSTANTIATE_TYPED_TEST_CASE_P(My, FooTest, MyTypes);
   static const char* const GTEST_REGISTERED_TEST_NAMES_(CaseName) \
       GTEST_ATTRIBUTE_UNUSED_ = \
           GTEST_TYPED_TEST_CASE_P_STATE_(CaseName).VerifyRegisteredTestNames( \
-              __FILE__, __LINE__, #__VA_ARGS__)
+          __FILE_NAME__, __LINE__, #__VA_ARGS__)
 
 // The 'Types' template argument below must have spaces around it
 // since some compilers may choke on '>>' when passing a template
@@ -19576,7 +19576,7 @@ INSTANTIATE_TYPED_TEST_CASE_P(My, FooTest, MyTypes);
           CaseName, GTEST_CASE_NAMESPACE_(CaseName)::gtest_AllTests_,     \
           ::testing::internal::TypeList< Types >::type>::                 \
           Register(#Prefix,                                               \
-                   ::testing::internal::CodeLocation(__FILE__, __LINE__), \
+                   ::testing::internal::CodeLocation(__FILE_NAME__, __LINE__), \
                    &GTEST_TYPED_TEST_CASE_P_STATE_(CaseName), #CaseName,  \
                    GTEST_REGISTERED_TEST_NAMES_(CaseName),                \
                    ::testing::internal::GenerateNames<                    \
@@ -22112,7 +22112,7 @@ class GTEST_API_ ScopedTrace {
 // assertions in its own thread.
 #define SCOPED_TRACE(message) \
   ::testing::ScopedTrace GTEST_CONCAT_TOKEN_(gtest_trace_, __LINE__)(\
-    __FILE__, __LINE__, (message))
+  __FILE_NAME__, __LINE__, (message))
 
 
 // Compile-time assertion for type equality.

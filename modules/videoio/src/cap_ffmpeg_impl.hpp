@@ -185,7 +185,7 @@ inline static AVRational av_make_q(int num, int den)
 #ifdef NDEBUG
 #define CV_WARN(message)
 #else
-#define CV_WARN(message) fprintf(stderr, "warning: %s (%s:%d)\n", message, __FILE__, __LINE__)
+#define CV_WARN(message) fprintf(stderr, "warning: %s (%s:%d)\n", message, __FILE_NAME__, __LINE__)
 #endif
 
 #if defined _WIN32

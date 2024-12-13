@@ -317,7 +317,7 @@ static int  cvTsSimpleGraphVertexDegree( CvTsSimpleGraph* graph, int index )
 #define CV_TS_SEQ_CHECK_CONDITION( expr, err_msg )          \
 if( !(expr) )                                               \
 {                                                           \
-set_error_context( #expr, err_msg, __FILE__, __LINE__ );    \
+set_error_context( #expr, err_msg, __FILE_NAME__, __LINE__ );    \
 ts->set_failed_test_info( cvtest::TS::FAIL_INVALID_OUTPUT );\
 throw -1;                                                   \
 }

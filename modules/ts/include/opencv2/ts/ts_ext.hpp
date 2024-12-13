@@ -98,7 +98,7 @@ struct SkipThisTest : public ::testing::Test {
       ::test_info_ =\
         ::testing::internal::MakeAndRegisterTestInfo(\
             #test_case_name, #test_name, NULL, NULL, \
-            ::testing::internal::CodeLocation(__FILE__, __LINE__), \
+            ::testing::internal::CodeLocation(__FILE_NAME__, __LINE__), \
             (::testing::internal::GetTestTypeId()), \
             parent_class::SetUpTestCase, \
             parent_class::TearDownTestCase, \
@@ -163,7 +163,7 @@ struct SkipThisTest : public ::testing::Test {
       ::test_info_ =\
         ::testing::internal::MakeAndRegisterTestInfo(\
             #test_fixture, #test_name, NULL, NULL, \
-            ::testing::internal::CodeLocation(__FILE__, __LINE__), \
+            ::testing::internal::CodeLocation(__FILE_NAME__, __LINE__), \
             (::testing::internal::GetTypeId<test_fixture>()), \
             test_fixture::SetUpTestCase, \
             test_fixture::TearDownTestCase, \
@@ -188,7 +188,7 @@ struct SkipThisTest : public ::testing::Test {
           GetTestCasePatternHolder<test_case_name>(\
               #test_case_name, \
               ::testing::internal::CodeLocation(\
-                  __FILE__, __LINE__))->AddTestPattern(\
+                    __FILE_NAME__, __LINE__))->AddTestPattern(\
                       #test_case_name, \
                       #test_name, \
                       new ::testing::internal::TestMetaFactory< \

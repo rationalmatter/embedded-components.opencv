@@ -165,6 +165,6 @@ IEX_EXPORT void iex_debugTrap();
 #define LOGIC_ASSERT(assertion)           \
     ASSERT(assertion,                     \
            IEX_NAMESPACE::LogicExc,       \
-           __FILE__ << "(" << __LINE__ << "): logical assertion failed: " << #assertion )
+            __FILE_NAME__ << "(" << __LINE__ << "): logical assertion failed: " << #assertion )
 
 #endif

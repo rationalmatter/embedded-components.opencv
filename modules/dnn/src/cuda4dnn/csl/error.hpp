@@ -10,7 +10,7 @@
 #include <cuda_runtime_api.h>
 
 #define CUDA4DNN_CHECK_CUDA(call) \
-    ::cv::dnn::cuda4dnn::csl::detail::check((call), CV_Func, __FILE__, __LINE__)
+    ::cv::dnn::cuda4dnn::csl::detail::check((call), CV_Func, __FILE_NAME__, __LINE__)
 
 namespace cv { namespace dnn { namespace cuda4dnn { namespace csl {
     /** @brief exception class for errors thrown by the CUDA APIs */

@@ -1276,7 +1276,7 @@ int cv::createButton(const String&, ButtonCallback, void*, int , bool )
     "The function is not implemented. " \
     "Rebuild the library with Windows, GTK+ 2.x or Cocoa support. "\
     "If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then re-run cmake or configure script", \
-    funcname, __FILE__, __LINE__)
+    funcname, __FILE_NAME__, __LINE__)
 
 
 CV_IMPL int cvNamedWindow( const char*, int )

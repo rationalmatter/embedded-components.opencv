@@ -2653,7 +2653,7 @@ CVAPI(int) cvGuiBoxReport( int status, const char* func_name, const char* err_ms
                           const char* file_name, int line, void* userdata );
 
 #define OPENCV_ERROR(status,func,context)                           \
-cvError((status),(func),(context),__FILE__,__LINE__)
+cvError((status),(func),(context),__FILE_NAME__,__LINE__)
 
 #define OPENCV_ASSERT(expr,func,context)                            \
 {if (! (expr))                                      \
@@ -2681,7 +2681,7 @@ static char cvFuncName[] = Name
  */
 #define CV_ERROR( Code, Msg )                                       \
 {                                                                   \
-    cvError( (Code), cvFuncName, Msg, __FILE__, __LINE__ );        \
+    cvError( (Code), cvFuncName, Msg, __FILE_NAME__, __LINE__ );        \
     __CV_EXIT__;                                                   \
 }
 

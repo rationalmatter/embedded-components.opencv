@@ -100,7 +100,7 @@ inline static bool checkError(const char* file, const int line, const char* func
 #endif // HAVE_OPENGL
 } // namespace
 
-#define CV_CheckGlError() CV_DbgAssert( (checkError(__FILE__, __LINE__, CV_Func)) )
+#define CV_CheckGlError() CV_DbgAssert( (checkError(__FILE_NAME__, __LINE__, CV_Func)) )
 
 #ifdef HAVE_OPENGL
 namespace

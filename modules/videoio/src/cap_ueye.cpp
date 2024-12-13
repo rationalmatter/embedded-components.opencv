@@ -37,8 +37,8 @@ struct image_buffer
     INT id;
 };
 }
-#define ASSERT_UEYE(expr) { UINT expr_result = expr; if(IS_SUCCESS != expr_result) CV_Error_(Error::StsAssert, ("%s %s %d: failed with code %u", #expr, __FILE__, __LINE__, expr_result)); }
-#define PRINT_ON_UEYE_ERROR( expr ) { UINT expr_result = expr; if(IS_SUCCESS != expr_result) CV_LOG_ERROR(NULL, "VIDEOIO(UEYE:" << cam_id << "): " << #expr << " " << __FILE__ << " " << __LINE__ << ": failed with code " << expr_result); }
+#define ASSERT_UEYE(expr) { UINT expr_result = expr; if(IS_SUCCESS != expr_result) CV_Error_(Error::StsAssert, ("%s %s %d: failed with code %u", #expr, __FILE_NAME__, __LINE__, expr_result)); }
+#define PRINT_ON_UEYE_ERROR( expr ) { UINT expr_result = expr; if(IS_SUCCESS != expr_result) CV_LOG_ERROR(NULL, "VIDEOIO(UEYE:" << cam_id << "): " << #expr << " " << __FILE_NAME__ << " " << __LINE__ << ": failed with code " << expr_result); }
 
 struct VideoCapture_uEye CV_FINAL: public IVideoCapture
 {

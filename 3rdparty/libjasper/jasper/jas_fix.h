@@ -345,11 +345,11 @@ extern "C" {
 
 /* Handle overflow. */
 #define	JAS_FIX_OFLOW() \
-    jas_eprintf("overflow error: file %s, line %d\n", __FILE__, __LINE__)
+    jas_eprintf("overflow error: file %s, line %d\n", __FILE_NAME__, __LINE__)
 
 /* Handle underflow. */
 #define	JAS_FIX_UFLOW() \
-    jas_eprintf("underflow error: file %s, line %d\n", __FILE__, __LINE__)
+    jas_eprintf("underflow error: file %s, line %d\n", __FILE_NAME__, __LINE__)
 
 #ifdef __cplusplus
 }

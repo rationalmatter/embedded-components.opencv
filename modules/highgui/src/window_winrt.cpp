@@ -38,12 +38,12 @@
 {                                               \
     cvError( cv::Error::StsNotImplemented, funcname,    \
     "The function is not implemented. ",        \
-    __FILE__, __LINE__ );                       \
+__FILE_NAME__, __LINE__ );                       \
 }
 
 #define CV_ERROR( Code, Msg )                                       \
 {                                                                   \
-    cvError( (Code), cvFuncName, Msg, __FILE__, __LINE__ );         \
+    cvError( (Code), cvFuncName, Msg, __FILE_NAME__, __LINE__ );         \
 };
 
 /********************************** WinRT Specific API Implementation ******************************************/

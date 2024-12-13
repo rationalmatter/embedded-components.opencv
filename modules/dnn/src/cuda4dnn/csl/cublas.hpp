@@ -19,7 +19,7 @@
 #include <utility>
 
 #define CUDA4DNN_CHECK_CUBLAS(call) \
-    ::cv::dnn::cuda4dnn::csl::cublas::detail::check((call), CV_Func, __FILE__, __LINE__)
+    ::cv::dnn::cuda4dnn::csl::cublas::detail::check((call), CV_Func, __FILE_NAME__, __LINE__)
 
 namespace cv { namespace dnn { namespace cuda4dnn { namespace csl { namespace cublas {
 

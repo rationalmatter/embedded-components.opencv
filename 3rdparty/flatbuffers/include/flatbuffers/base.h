@@ -12,7 +12,7 @@
   #include <stdlib.h>
   #include <crtdbg.h>
   // Replace operator new by trace-enabled version.
-  #define DEBUG_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
+  #define DEBUG_NEW new(_NORMAL_BLOCK, __FILE_NAME__, __LINE__)
   #define new DEBUG_NEW
 #endif
 

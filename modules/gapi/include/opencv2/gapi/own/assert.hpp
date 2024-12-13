@@ -43,7 +43,7 @@ namespace detail
 }
 
 #define GAPI_Assert(expr) \
-{ if (!(expr)) ::detail::assert_abort(#expr, __LINE__, __FILE__, __func__); }
+{ if (!(expr)) ::detail::assert_abort(#expr, __LINE__, __FILE_NAME__, __func__); }
 
 #ifdef NDEBUG
 #  define GAPI_DbgAssert(expr) GAPI_DbgAssertNoOp(expr)
@@ -52,7 +52,7 @@ namespace detail
 #endif
 
 #define GAPI_Error(msg) { \
-    ::detail::assert_abort(msg, __LINE__, __FILE__, __func__); \
+    ::detail::assert_abort(msg, __LINE__, __FILE_NAME__, __func__); \
 }
 
 #endif // GAPI_STANDALONE

@@ -50,7 +50,7 @@ namespace details {
 #endif
 
 #ifndef CV_TRACE_FILENAME
-# define CV_TRACE_FILENAME __FILE__
+# define CV_TRACE_FILENAME __FILE_NAME__
 #endif
 
 #ifndef CV__TRACE_FUNCTION
