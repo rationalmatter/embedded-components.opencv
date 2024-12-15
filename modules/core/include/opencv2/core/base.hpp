@@ -317,7 +317,7 @@ configuration, the exception is thrown.
 @param code one of Error::Code
 @param msg error message
 */
-#define CV_Error( code, msg ) cv::error( code, msg, CV_Func, __FILE__, __LINE__ )
+#define CV_Error( code, msg ) cv::error( code, msg, CV_Func, __FILE_NAME__, __LINE__ )
 
 /**  @brief Call the error handler.
 
@@ -331,7 +331,7 @@ for example:
 @param code one of Error::Code
 @param args printf-like formatted error message in parentheses
 */
-#define CV_Error_( code, args ) cv::error( code, cv::format args, CV_Func, __FILE__, __LINE__ )
+#define CV_Error_( code, args ) cv::error( code, cv::format args, CV_Func, __FILE_NAME__, __LINE__ )
 
 /** @brief Checks a condition at runtime and throws exception if it fails
 
@@ -339,7 +339,7 @@ The macros CV_Assert (and CV_DbgAssert(expr)) evaluate the specified expression.
 raise an error (see cv::error). The macro CV_Assert checks the condition in both Debug and Release
 configurations while CV_DbgAssert is only retained in the Debug configuration.
 */
-#define CV_Assert( expr ) do { if(!!(expr)) ; else cv::error( cv::Error::StsAssert, #expr, CV_Func, __FILE__, __LINE__ ); } while(0)
+#define CV_Assert( expr ) do { if(!!(expr)) ; else cv::error( cv::Error::StsAssert, #expr, CV_Func, __FILE_NAME__, __LINE__ ); } while(0)
 
 #endif // CV_STATIC_ANALYSIS
 

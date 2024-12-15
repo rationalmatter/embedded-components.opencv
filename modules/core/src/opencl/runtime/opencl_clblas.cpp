@@ -120,7 +120,7 @@ static void* openclamdblas_check_fn(int ID)
     {
         throw cv::Exception(cv::Error::OpenCLApiCallError,
                 cv::format("OpenCL AMD BLAS function is not available: [%s]", e->fnName),
-                CV_Func, __FILE__, __LINE__);
+                CV_Func, __FILE_NAME__, __LINE__);
     }
     *(e->ppFn) = func;
     return func;

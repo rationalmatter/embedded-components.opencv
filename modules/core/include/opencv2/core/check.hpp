@@ -47,7 +47,7 @@ struct CheckContext {
 };
 
 #ifndef CV__CHECK_FILENAME
-# define CV__CHECK_FILENAME __FILE__
+# define CV__CHECK_FILENAME __FILE_NAME__
 #endif
 
 #ifndef CV__CHECK_FUNCTION

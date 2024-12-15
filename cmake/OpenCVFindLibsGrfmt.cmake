@@ -67,9 +67,12 @@ if(WITH_JPEG)
     ocv_clear_vars(JPEG_FOUND)
   else()
     ocv_clear_internal_cache_vars(JPEG_LIBRARY JPEG_INCLUDE_DIR)
-    include(FindJPEG)
+    # include(FindJPEG)
+    set(JPEG_FOUND 1)
+    set(JPEG_LIBRARY "libjpeg-turbo")
   endif()
 
+  message(STATUS "JPEG_INCLUDE_DIR: ${JPEG_INCLUDE_DIR}")
   if(NOT JPEG_FOUND)
     ocv_clear_vars(JPEG_LIBRARY JPEG_INCLUDE_DIR)
 
@@ -107,6 +110,7 @@ if(WITH_JPEG)
   set(HAVE_JPEG YES)
 endif()
 
+# tiff is disabled on iOS
 # --- libtiff (optional, should be searched after zlib and libjpeg) ---
 if(WITH_TIFF)
   if(BUILD_TIFF)
@@ -157,7 +161,9 @@ if(WITH_WEBP)
     ocv_clear_vars(WEBP_FOUND WEBP_LIBRARY WEBP_LIBRARIES WEBP_INCLUDE_DIR)
   else()
     ocv_clear_internal_cache_vars(WEBP_LIBRARY WEBP_INCLUDE_DIR)
-    include(cmake/OpenCVFindWebP.cmake)
+    # include(cmake/OpenCVFindWebP.cmake)
+    SET(WEBP_FOUND 1)
+    SET(WEBP_LIBRARY libwebp)
     if(WEBP_FOUND)
       set(HAVE_WEBP 1)
     endif()
@@ -192,6 +198,8 @@ if(NOT WEBP_VERSION AND WEBP_INCLUDE_DIR)
     endif()
   endif()
 endif()
+
+message(STATUS "WEBP_INCLUDE_DIR: ${WEBP_INCLUDE_DIR}")
 
 # --- libopenjp2 (optional, check before libjasper) ---
 if(WITH_OPENJPEG)

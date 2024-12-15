@@ -73,7 +73,7 @@ namespace cv { namespace cuda {
 }}
 
 #ifndef cudaSafeCall
-    #define cudaSafeCall(expr)  cv::cuda::checkCudaError(expr, __FILE__, __LINE__, CV_Func)
+    #define cudaSafeCall(expr)  cv::cuda::checkCudaError(expr, __FILE_NAME__, __LINE__, CV_Func)
 #endif
 
 namespace cv { namespace cuda

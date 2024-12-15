@@ -159,8 +159,8 @@ namespace cv { namespace cuda
     };
 }}
 
-#define nppSafeCall(expr)  cv::cuda::checkNppError(expr, __FILE__, __LINE__, CV_Func)
-#define cuSafeCall(expr)  cv::cuda::checkCudaDriverApiError(expr, __FILE__, __LINE__, CV_Func)
+#define nppSafeCall(expr)  cv::cuda::checkNppError(expr, __FILE_NAME__, __LINE__, CV_Func)
+#define cuSafeCall(expr)  cv::cuda::checkCudaDriverApiError(expr, __FILE_NAME__, __LINE__, CV_Func)
 
 #endif // HAVE_CUDA
 

@@ -57,11 +57,11 @@ public: \
     {} \
 };
 DECLARE_RBS_EXCEPTION(THROW_EOS)
-#define RBS_THROW_EOS RBS_THROW_EOS_Exception(cv::Error::StsError, "Unexpected end of input stream", CV_Func, __FILE__, __LINE__)
+#define RBS_THROW_EOS RBS_THROW_EOS_Exception(cv::Error::StsError, "Unexpected end of input stream", CV_Func, __FILE_NAME__, __LINE__)
 DECLARE_RBS_EXCEPTION(THROW_FORB)
-#define RBS_THROW_FORB RBS_THROW_FORB_Exception(cv::Error::StsError, "Forrbidden huffman code", CV_Func, __FILE__, __LINE__)
+#define RBS_THROW_FORB RBS_THROW_FORB_Exception(cv::Error::StsError, "Forrbidden huffman code", CV_Func, __FILE_NAME__, __LINE__)
 DECLARE_RBS_EXCEPTION(BAD_HEADER)
-#define RBS_BAD_HEADER RBS_BAD_HEADER_Exception(cv::Error::StsError, "Invalid header", CV_Func, __FILE__, __LINE__)
+#define RBS_BAD_HEADER RBS_BAD_HEADER_Exception(cv::Error::StsError, "Invalid header", CV_Func, __FILE_NAME__, __LINE__)
 
 typedef unsigned long ulong;
 

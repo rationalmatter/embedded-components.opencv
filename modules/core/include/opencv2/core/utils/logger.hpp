@@ -119,7 +119,7 @@ struct LogTagAuto
         cv::utils::logging::internal::writeLogMessageEx( \
             cv_temp_msglevel, \
             (cv_temp_logtagptr ? cv_temp_logtagptr->name : nullptr), \
-            __FILE__, \
+            __FILE_NAME__, \
             __LINE__, \
             CV_Func, \
             cv_temp_logstream.str().c_str()); \

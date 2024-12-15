@@ -102,7 +102,7 @@ int decodeSimpleFormat( const char* dt );
 #define CV_PARSE_ERROR_CPP(errmsg) do { (void)fs; abort(); } while (0)
 #else
 #define CV_PARSE_ERROR_CPP( errmsg ) \
-    fs->parseError( CV_Func, (errmsg), __FILE__, __LINE__ )
+    fs->parseError( CV_Func, (errmsg), __FILE_NAME__, __LINE__ )
 #endif
 
 

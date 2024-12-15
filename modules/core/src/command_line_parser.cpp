@@ -472,7 +472,7 @@ std::vector<String> CommandLineParser::Impl::split_range_string(const String& _s
                          + String(", ")
                          + String(1, ss)
                          + String(")"),
-                         "", __FILE__, __LINE__
+                         "", __FILE_NAME__, __LINE__
                          );
             }
             begin = true;
@@ -492,7 +492,7 @@ std::vector<String> CommandLineParser::Impl::split_range_string(const String& _s
                          + String(", ")
                          + String(1, ss)
                          + String(")"),
-                         "", __FILE__, __LINE__
+                         "", __FILE_NAME__, __LINE__
                          );
             }
             begin = false;
@@ -516,7 +516,7 @@ std::vector<String> CommandLineParser::Impl::split_range_string(const String& _s
                  + String(", ")
                  + String(1, ss)
                  + String(")"),
-                 "", __FILE__, __LINE__
+                 "", __FILE_NAME__, __LINE__
                 );
     }
 

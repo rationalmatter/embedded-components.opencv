@@ -181,7 +181,7 @@ namespace cvtest
               GetTestCasePatternHolder<test_case_name>(\
                   #test_case_name, \
                   ::testing::internal::CodeLocation(\
-                      __FILE__, __LINE__))->AddTestPattern(\
+                        __FILE_NAME__, __LINE__))->AddTestPattern(\
                           #test_case_name, \
                           #test_name, \
                           new ::testing::internal::TestMetaFactory< \

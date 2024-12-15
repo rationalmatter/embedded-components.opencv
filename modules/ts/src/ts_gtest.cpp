@@ -7799,7 +7799,7 @@ static void DeathTestAbort(const std::string& message) {
   do { \
     if (!::testing::internal::IsTrue(expression)) { \
       DeathTestAbort( \
-          ::std::string("CHECK failed: File ") + __FILE__ +  ", line " \
+          ::std::string("CHECK failed: File ") + __FILE_NAME__ +  ", line " \
           + ::testing::internal::StreamableToString(__LINE__) + ": " \
           + #expression); \
     } \
@@ -7820,7 +7820,7 @@ static void DeathTestAbort(const std::string& message) {
     } while (gtest_retval == -1 && errno == EINTR); \
     if (gtest_retval == -1) { \
       DeathTestAbort( \
-          ::std::string("CHECK failed: File ") + __FILE__ + ", line " \
+          ::std::string("CHECK failed: File ") + __FILE_NAME__ + ", line " \
           + ::testing::internal::StreamableToString(__LINE__) + ": " \
           + #expression + " != -1"); \
     } \

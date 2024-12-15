@@ -13,6 +13,8 @@ if(HAVE_WINRT_CX AND NOT WINRT)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /ZW")
 endif()
 
+ocv_include_directories(${CMAKE_CURRENT_LIST_DIR}/../core/misc/objc/common/)
+
 if (HAVE_AVIF)
   ocv_include_directories(${AVIF_INCLUDE_DIR})
   list(APPEND GRFMT_LIBS ${AVIF_LIBRARY})
@@ -105,7 +107,10 @@ if (HAVE_IMGCODEC_PFM)
 endif()
 
 file(GLOB grfmt_hdrs ${CMAKE_CURRENT_LIST_DIR}/src/grfmt*.hpp)
-file(GLOB grfmt_srcs ${CMAKE_CURRENT_LIST_DIR}/src/grfmt*.cpp)
+file(GLOB grfmt_srcs 
+	"${CMAKE_CURRENT_LIST_DIR}/src/grfmt*.cpp"
+	"${CMAKE_CURRENT_LIST_DIR}/../core/misc/objc/common/*.mm"
+)
 
 list(APPEND grfmt_hdrs ${CMAKE_CURRENT_LIST_DIR}/src/bitstrm.hpp)
 list(APPEND grfmt_srcs ${CMAKE_CURRENT_LIST_DIR}/src/bitstrm.cpp)
@@ -113,6 +118,10 @@ list(APPEND grfmt_hdrs ${CMAKE_CURRENT_LIST_DIR}/src/rgbe.hpp)
 list(APPEND grfmt_srcs ${CMAKE_CURRENT_LIST_DIR}/src/rgbe.cpp)
 list(APPEND grfmt_hdrs ${CMAKE_CURRENT_LIST_DIR}/src/exif.hpp)
 list(APPEND grfmt_srcs ${CMAKE_CURRENT_LIST_DIR}/src/exif.cpp)
+list(APPEND grfmt_srcs ${CMAKE_CURRENT_LIST_DIR}/misc/objc/ios/MatConverters.mm)
+
+#file(GLOB grfmt_hdrs ${CMAKE_CURRENT_LIST_DIR}/misc/objc/ios/*.h)
+#file(GLOB grfmt_srcs ${CMAKE_CURRENT_LIST_DIR}/misc/objc/ios/*.mm)
 
 source_group("Src\\grfmts" FILES ${grfmt_hdrs} ${grfmt_srcs})
 

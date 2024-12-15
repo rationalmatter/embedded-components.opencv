@@ -29,6 +29,7 @@ std::vector<BackendInfo>& getBuiltinBackendsInfo()
 {
     static std::vector<BackendInfo> g_backends
     {
+        DECLARE_STATIC_BACKEND("JUNO", createUIBackendJuno)
 #ifdef HAVE_GTK
         DECLARE_STATIC_BACKEND("GTK", createUIBackendGTK)
 #if defined(HAVE_GTK3)

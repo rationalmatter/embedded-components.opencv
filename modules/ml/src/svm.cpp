@@ -411,7 +411,7 @@ ParamGrid SVM::getDefaultGrid( int param_id )
     }
     else
         cvError( cv::Error::StsBadArg, "SVM::getDefaultGrid", "Invalid type of parameter "
-                "(use one of SVM::C, SVM::GAMMA et al.)", __FILE__, __LINE__ );
+                "(use one of SVM::C, SVM::GAMMA et al.)", __FILE_NAME__, __LINE__ );
     return grid;
 }
 

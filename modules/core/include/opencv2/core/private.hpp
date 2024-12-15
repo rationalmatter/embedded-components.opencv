@@ -261,7 +261,7 @@ T* allocSingletonNew() { return new(allocSingletonNewBuffer(sizeof(T))) T(); }
 #define CV_IPP_MALLOC(SIZE) ippMalloc((int)SIZE)
 #endif
 
-#define setIppErrorStatus() cv::ipp::setIppStatus(-1, CV_Func, __FILE__, __LINE__)
+#define setIppErrorStatus() cv::ipp::setIppStatus(-1, CV_Func, __FILE_NAME__, __LINE__)
 
 #if IPP_VERSION_X100 >= 201700
 #define ippCPUID_AVX512_SKX (ippCPUID_AVX512F|ippCPUID_AVX512CD|ippCPUID_AVX512VL|ippCPUID_AVX512BW|ippCPUID_AVX512DQ)
@@ -718,15 +718,15 @@ CV_EXPORTS InstrNode*   getCurrentNode();
 #endif
 
 // Instrument region
-#define CV_INSTRUMENT_REGION_META(NAME, ALWAYS_EXPAND, TYPE, IMPL)        ::cv::instr::IntrumentationRegion  CVAUX_CONCAT(__instr_region__, __LINE__) (NAME, __FILE__, __LINE__, CV_INSTRUMENT_GET_RETURN_ADDRESS, ALWAYS_EXPAND, TYPE, IMPL);
+#define CV_INSTRUMENT_REGION_META(NAME, ALWAYS_EXPAND, TYPE, IMPL)        ::cv::instr::IntrumentationRegion  CVAUX_CONCAT(__instr_region__, __LINE__) (NAME, __FILE_NAME__, __LINE__, CV_INSTRUMENT_GET_RETURN_ADDRESS, ALWAYS_EXPAND, TYPE, IMPL);
 #define CV_INSTRUMENT_REGION_CUSTOM_META(NAME, ALWAYS_EXPAND, TYPE, IMPL)\
     void *CVAUX_CONCAT(__curr_address__, __LINE__) = [&]() {return CV_INSTRUMENT_GET_RETURN_ADDRESS;}();\
-    ::cv::instr::IntrumentationRegion CVAUX_CONCAT(__instr_region__, __LINE__) (NAME, __FILE__, __LINE__, CVAUX_CONCAT(__curr_address__, __LINE__), false, ::cv::instr::TYPE_GENERAL, ::cv::instr::IMPL_PLAIN);
+    ::cv::instr::IntrumentationRegion CVAUX_CONCAT(__instr_region__, __LINE__) (NAME, __FILE_NAME__, __LINE__, CVAUX_CONCAT(__curr_address__, __LINE__), false, ::cv::instr::TYPE_GENERAL, ::cv::instr::IMPL_PLAIN);
 // Instrument functions with non-void return type
 #define CV_INSTRUMENT_FUN_RT_META(TYPE, IMPL, ERROR_COND, FUN, ...) ([&]()\
 {\
     if(::cv::instr::useInstrumentation()){\
-        ::cv::instr::IntrumentationRegion __instr__(#FUN, __FILE__, __LINE__, NULL, false, TYPE, IMPL);\
+        ::cv::instr::IntrumentationRegion __instr__(#FUN, __FILE_NAME__, __LINE__, NULL, false, TYPE, IMPL);\
         try{\
             auto instrStatus = ((FUN)(__VA_ARGS__));\
             if(ERROR_COND){\
@@ -747,7 +747,7 @@ CV_EXPORTS InstrNode*   getCurrentNode();
 #define CV_INSTRUMENT_FUN_RV_META(TYPE, IMPL, FUN, ...) ([&]()\
 {\
     if(::cv::instr::useInstrumentation()){\
-        ::cv::instr::IntrumentationRegion __instr__(#FUN, __FILE__, __LINE__, NULL, false, TYPE, IMPL);\
+        ::cv::instr::IntrumentationRegion __instr__(#FUN, __FILE_NAME__, __LINE__, NULL, false, TYPE, IMPL);\
         try{\
             (FUN)(__VA_ARGS__);\
         }catch(...){\
@@ -760,7 +760,7 @@ CV_EXPORTS InstrNode*   getCurrentNode();
     }\
 }())
 // Instrumentation information marker
-#define CV_INSTRUMENT_MARK_META(IMPL, NAME, ...) {::cv::instr::IntrumentationRegion __instr_mark__(NAME, __FILE__, __LINE__, NULL, false, ::cv::instr::TYPE_MARKER, IMPL);}
+#define CV_INSTRUMENT_MARK_META(IMPL, NAME, ...) {::cv::instr::IntrumentationRegion __instr_mark__(NAME, __FILE_NAME__, __LINE__, NULL, false, ::cv::instr::TYPE_MARKER, IMPL);}
 
 ///// General instrumentation
 // General OpenCV region instrumentation macro
